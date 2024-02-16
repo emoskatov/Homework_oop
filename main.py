@@ -103,14 +103,20 @@ class Reviewer(Mentor):
 def average_grade_for_homework(list_student: list, course: str):
     grades = []
     for student in list_student:
-        grades += student.grades[course]
+        if isinstance(student,Student):
+            grades += student.grades[course]
+        else:
+            return f"Ошибка {student} не является студентом"
     return f"Средняя оценка на курсе {course} - {round(sum(grades) / len(grades), 2)}"
 
 
 def average_grade_for_lectures(list_lecturers: list, course: str):
     grades = []
     for lecturer in list_lecturers:
-        grades += lecturer.grades[course]
+        if isinstance(lecturer,Lecturer):
+            grades += lecturer.grades[course]
+        else:
+            return f"Ошибка {lecturer} не является Лектором"
     return f"Средняя оценка за лекции на курсе {course} - {round(sum(grades) / len(grades), 2)}"
 
 
