@@ -100,6 +100,20 @@ class Reviewer(Mentor):
             return 'Ошибка'
 
 
+def average_grade_for_homework(list_student: list, course: str):
+    grades = []
+    for student in list_student:
+        grades += student.grades[course]
+    return f"Средняя оценка на курсе {course} - {round(sum(grades) / len(grades), 2)}"
+
+
+def average_grade_for_lectures(list_lecturers: list, course: str):
+    grades = []
+    for lecturer in list_lecturers:
+        grades += lecturer.grades[course]
+    return f"Средняя оценка за лекции на курсе {course} - {round(sum(grades) / len(grades), 2)}"
+
+
 student_ivanov_a = Student('Алексей', 'Иванов', 'Мужской')
 student_ivanov_a.courses_in_progress += ['Python', 'Java']
 student_sokolov_k = Student('Кирилл', 'Соколов', 'Мужской')
@@ -141,3 +155,8 @@ print()
 print(student_sokolov_k == student_ivanov_a)
 print(student_sokolov_k < student_ivanov_a)
 print(student_sokolov_k > student_ivanov_a)
+print()
+
+print(average_grade_for_homework([student_ivanov_a, student_sokolov_k], "Python"))
+print()
+print(average_grade_for_lectures([lector_morozov_p, lector_popov_d], "Python"))
